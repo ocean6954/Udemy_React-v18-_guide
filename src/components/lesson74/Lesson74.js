@@ -1,4 +1,4 @@
-import Todo from "./lesson74/Todo";
+import Todo from "./Todo";
 import { ChakraBaseProvider, ChakraProvider } from "@chakra-ui/react";
 
 const Lesson74 = () => {
