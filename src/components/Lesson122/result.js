@@ -1,7 +1,6 @@
 import { useValue } from "../context/context";
 const Result = () => {
   const result = useValue();
-  console.log("result");
 
   return (
     <>

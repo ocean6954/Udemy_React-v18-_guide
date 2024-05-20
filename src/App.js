@@ -1,5 +1,5 @@
 // import "./App.css";
-import Lesson from "./components/Lesson122/lesson122";
+import Lesson from "./components/lesson123/Lesson123";
 function App() {
   return (
     <div className="App">

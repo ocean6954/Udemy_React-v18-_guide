@@ -7,7 +7,6 @@ const Lesson122 = () => {
   const state = useValue();
   return (
     <>
-      {console.log("lesson122です")}
       <ValueProvider value={state}>
         <Input name={"a"} />
         <Input name={"b"} />

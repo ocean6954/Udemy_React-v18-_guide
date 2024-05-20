@@ -1,9 +1,10 @@
 import { useValueDispatch } from "../context/context";
 
+const CALC_OPTIONS = ["add", "minus", "divide", "multiply"];
+
 const Select = () => {
-  const CALC_OPTIONS = ["add", "minus", "divide", "multiply"];
   const dispatch = useValueDispatch();
-  console.log("selectです");
+
   return (
     <>
       <select
