@@ -5,6 +5,23 @@ const Item = ({ state }) => {
   const deleteItem = (itemId) => {
     dispatch({ type: "complete", payload: { id: itemId } });
   };
+  const handleDoubleClick = (id, content, bool) => {
+    console.log("double Clicked");
+    // console.log(bool);
+    // console.log(!bool);
+
+    dispatch({
+      type: "handleToggle",
+      payload: {
+        id: id,
+        content: content,
+        isEditing: !bool,
+      },
+    });
+  };
+  const handleChange = () => {
+    dispatch({ type: "change", payload: {} });
+  };
   return (
     <div>
       <button
@@ -15,7 +32,27 @@ const Item = ({ state }) => {
       >
         完了
       </button>
-      {state.content}
+      {state.isEditing ? (
+        <label htmlFor={state.id}>
+          <input
+            // value={state.content}
+            id={state.id}
+            type="text"
+            onChange={handleChange}
+            onDoubleClick={() =>
+              handleDoubleClick(state.id, state.content, state.isEditing)
+            }
+          ></input>
+        </label>
+      ) : (
+        <span
+          onDoubleClick={() =>
+            handleDoubleClick(state.id, state.content, state.isEditing)
+          }
+        >
+          {state.content}
+        </span>
+      )}
     </div>
   );
 };
