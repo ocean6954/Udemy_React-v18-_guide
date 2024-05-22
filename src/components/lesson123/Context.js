@@ -20,7 +20,7 @@ const reducer = (state, { type, payload }) => {
       const editingID = editingArray.findIndex(
         (element) => element.id === payload.id
       );
-
+      console.log(editingID);
       if (editingID !== -1) {
         editingArray.splice(editingID, 1, {
           id: payload.id,
@@ -28,8 +28,21 @@ const reducer = (state, { type, payload }) => {
           isEditing: payload.isEditing,
         }); // 要素を置き換える
       }
-
       return editingArray;
+
+    case "change":
+      const changeArray = [...state];
+      const changeIndex = changeArray.findIndex(
+        (element) => element.id === payload.id
+      );
+      if (changeIndex !== -1) {
+        changeArray.splice(changeIndex, 1, {
+          id: payload.id,
+          content: payload.content,
+          isEditing: true,
+        });
+      }
+      return changeArray;
 
     case "complete":
       const newArray = state.filter((sta) => sta.id !== payload.id);

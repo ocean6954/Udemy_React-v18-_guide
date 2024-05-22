@@ -6,10 +6,7 @@ const Item = ({ state }) => {
     dispatch({ type: "complete", payload: { id: itemId } });
   };
   const handleDoubleClick = (id, content, bool) => {
-    console.log("double Clicked");
-    // console.log(bool);
-    // console.log(!bool);
-
+    // console.log(`handleDoubleClickのIDは${id}`);
     dispatch({
       type: "handleToggle",
       payload: {
@@ -19,9 +16,22 @@ const Item = ({ state }) => {
       },
     });
   };
-  const handleChange = () => {
-    dispatch({ type: "change", payload: {} });
+
+  const handleChange = (id, value) => {
+    dispatch({ type: "change", payload: { id: id, content: value } });
   };
+
+  const handleKeyDown = (e, id, content) => {
+    console.log(`handleKeyDownのIDは${id}`);
+    if (e.keyCode === 13) {
+      console.log("エンターキーが押されました！");
+      dispatch({
+        type: "handleToggle",
+        payload: { id: id, content: content, isEditing: false },
+      });
+    }
+  };
+
   return (
     <div>
       <button
@@ -35,13 +45,14 @@ const Item = ({ state }) => {
       {state.isEditing ? (
         <label htmlFor={state.id}>
           <input
-            // value={state.content}
+            value={state.content}
             id={state.id}
             type="text"
-            onChange={handleChange}
+            onChange={(e) => handleChange(state.id, e.target.value)}
             onDoubleClick={() =>
               handleDoubleClick(state.id, state.content, state.isEditing)
             }
+            onKeyDown={(e) => handleKeyDown(e, state.id, state.content)}
           ></input>
         </label>
       ) : (
