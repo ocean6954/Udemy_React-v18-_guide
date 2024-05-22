@@ -13,10 +13,11 @@ const Input = () => {
       type: "add",
       payload: { id: Math.floor(Math.random() * 1e5), content: inputValue },
     });
+    setInputValue("");
   };
   return (
     <>
-      <input type="text" onChange={handleChange}></input>
+      <input type="text" value={inputValue} onChange={handleChange}></input>
       <button type="submit" onClick={handleSubmit}>
         追加
       </button>
