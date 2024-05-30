@@ -10,7 +10,7 @@ const Input = () => {
 
   const handleSubmit = () => {
     dispatch({
-      type: "add",
+      type: "todo/add",
       payload: { id: Math.floor(Math.random() * 1e5), content: inputValue },
     });
     setInputValue("");

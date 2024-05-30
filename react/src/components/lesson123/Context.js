@@ -3,9 +3,38 @@ import { createContext, useContext, useReducer } from "react";
 const TodoContext = createContext();
 const TodoDispatchContext = createContext();
 
+const initState = [
+  {
+    id: Math.floor(Math.random() * 1e5),
+    content: "Test1です",
+    isEditing: false,
+  },
+  {
+    id: Math.floor(Math.random() * 1e5),
+    content: "Testその2です",
+    isEditing: false,
+  },
+  {
+    id: Math.floor(Math.random() * 1e5),
+    content: "Testその3です",
+    isEditing: false,
+  },
+  {
+    id: Math.floor(Math.random() * 1e5),
+    content: "Testその4です",
+    isEditing: false,
+  },
+  {
+    id: Math.floor(Math.random() * 1e5),
+    content: "Testその5です",
+    isEditing: false,
+  },
+];
+
 const reducer = (state, { type, payload }) => {
+  //type,payloadは分割代入。もしくはactionとだけ書いて、action.typeのような形で取得する
   switch (type) {
-    case "add":
+    case "todo/add":
       return [
         ...state,
         {
@@ -44,7 +73,7 @@ const reducer = (state, { type, payload }) => {
       }
       return changeArray;
 
-    case "complete":
+    case "todo/delete":
       const newArray = state.filter((sta) => sta.id !== payload.id);
       console.log(`id:${payload.id}のリストを削除しました`);
       return newArray;
@@ -55,34 +84,6 @@ const reducer = (state, { type, payload }) => {
 };
 
 const TodoProvider = ({ children }) => {
-  const initState = [
-    {
-      id: Math.floor(Math.random() * 1e5),
-      content: "Test1です",
-      isEditing: false,
-    },
-    {
-      id: Math.floor(Math.random() * 1e5),
-      content: "Testその2です",
-      isEditing: false,
-    },
-    {
-      id: Math.floor(Math.random() * 1e5),
-      content: "Testその3です",
-      isEditing: false,
-    },
-    {
-      id: Math.floor(Math.random() * 1e5),
-      content: "Testその4です",
-      isEditing: false,
-    },
-    {
-      id: Math.floor(Math.random() * 1e5),
-      content: "Testその5です",
-      isEditing: false,
-    },
-  ];
-
   const [state, dispatch] = useReducer(reducer, initState);
   return (
     <TodoContext.Provider value={state}>

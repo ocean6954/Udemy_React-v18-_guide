@@ -3,10 +3,9 @@ import { useTodoDispatch } from "./Context";
 const Item = ({ state }) => {
   const dispatch = useTodoDispatch();
   const deleteItem = (itemId) => {
-    dispatch({ type: "complete", payload: { id: itemId } });
+    dispatch({ type: "todo/delete", payload: { id: itemId } });
   };
   const handleDoubleClick = (id, content, bool) => {
-    // console.log(`handleDoubleClickのIDは${id}`);
     dispatch({
       type: "handleToggle",
       payload: {
